@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "11.4.0",
+    "@emotion/styled": "11.3.0",
+    "@material-ui/core": "5.0.0-beta.2",
+    "@mui/styles": "^5.0.2",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -10,17 +14,15 @@
     "@types/node": "^12.20.36",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
+    "formik": "^2.2.9",
+    "prop-types": "15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "6.0.0-beta.0",
     "react-router-dom": "6.0.0-beta.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.4.4",
-    "web-vitals": "^1.1.2",
-    "@material-ui/core": "5.0.0-beta.2",
-    "@emotion/react": "11.4.0",
-    "@emotion/styled": "11.3.0",
-    "prop-types": "15.7.2"
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,7 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "5.1.8",
-    "@types/react-dom": "17.0.9"
+    "@types/react-dom": "17.0.9",
+    "@types/react-router-dom": "5.1.8"
   }
 }
