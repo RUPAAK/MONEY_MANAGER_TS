@@ -10,7 +10,9 @@ interface CoverContainerProps{
 const CoverContainer = experimentalStyled(Card)(
   ({ theme }) => `
         width: 100%;
-        margin-top: ${theme.spacing(3)};
+        height: 100vh;
+        // background: red;
+        // margin-top: ${theme.spacing(3)};
   `
 );
 const ScreenContainer: FC<CoverContainerProps>= ({children})=>{
