@@ -1,10 +1,10 @@
 import { Box, Card, Container, Typography } from "@material-ui/core";
 import { experimentalStyled } from "@material-ui/core/styles";
 import { FC, ReactNode } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
-interface CoverContainerProps{
-    children: ReactNode
+interface CoverContainerProps {
+  children: JSX.Element | JSX.Element[];
 }
 
 const CoverContainer = experimentalStyled(Card)(
@@ -15,16 +15,12 @@ const CoverContainer = experimentalStyled(Card)(
         // margin-top: ${theme.spacing(3)};
   `
 );
-const ScreenContainer: FC<CoverContainerProps>= ({children})=>{
-    return (
-        <CoverContainer>
-                {children}
-        </CoverContainer>
-    )
-}
+const ScreenContainer: FC<CoverContainerProps> = ({ children }) => {
+  return <CoverContainer>{children}</CoverContainer>;
+};
 
-ScreenContainer.propTypes={
-    children: PropTypes.node
-}
+// ScreenContainer.propTypes = {
+//   children: PropTypes.node,
+// };
 
-export default ScreenContainer
+export default ScreenContainer;
