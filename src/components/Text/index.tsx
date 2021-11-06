@@ -9,9 +9,10 @@ import { makeStyles } from "@mui/styles";
 
 interface TextProps {
   className?: string;
-  margin?: number;
+  margin?: string;
   type?: string;
   padding?: string;
+  height?: string;
   label: string;
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
   // | string;
@@ -21,14 +22,16 @@ interface TextProps {
 const useStyles = makeStyles({
   root: (props: TextProps) => ({
     margin: props.margin ? props.margin : 0,
+    // height: props.height ? props.height : 0,
+    // padding: props.padding ? props.padding : 0,
   }),
 });
 
 const Root = styled(TextField)(({ theme }) => ({
-  padding: theme.spacing(0),
+  // padding: theme.spacing(0),
   background: "white",
   borderRadius: "6px",
-  margin: `${theme.spacing(1)} 0`,
+  // margin: `${theme.spacing(1)} 0`,
   [theme.breakpoints.down("md")]: {
     width: "100%",
   },
@@ -41,14 +44,15 @@ const Root = styled(TextField)(({ theme }) => ({
 }));
 
 const Text: FC<TextProps> = ({
-  margin = 0,
+  margin = "0px",
   color = "primary",
   type = "text",
   label,
 }): JSX.Element => {
-  // const classes = useStyles({ margin });
+  const classes = useStyles({ margin, label });
   return (
     <Root
+      className={classes.root}
       id="outlined-basic"
       variant="filled"
       color={color}

@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/system";
 import Text from "../components/Text";
 import ScreenContainer from "../components/ScreenContainer";
 import { Button, Container } from "@mui/material";
+import Push from "../components/Button";
 
 // const Root = styled("div")(({ theme }) => ({
 //   padding: theme.spacing(1),
@@ -49,8 +50,15 @@ export default function Login() {
     <ScreenContainer>
       <CurrentContainer>
         <Text label="Email" color="success" type="email" />
-        <Text label="Password" color="success" type="password" />
-        <Button>Login</Button>
+        <Text
+          label="Password"
+          color="success"
+          type="password"
+          margin="10px"
+        />
+        <Push variant="contained" size="medium" color="success">
+          Login
+        </Push>
       </CurrentContainer>
     </ScreenContainer>
   );
