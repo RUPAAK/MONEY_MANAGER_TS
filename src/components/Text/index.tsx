@@ -1,11 +1,8 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import { green } from "@mui/material/colors";
-import { ThemeProvider } from "@mui/system";
 import { FC, ReactNode } from "react";
 import { TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import PropTypes from "prop-types";
 
 interface TextProps {
   className?: string;
@@ -61,5 +58,16 @@ const Text: FC<TextProps> = ({
     />
   );
 };
+
+
+/**
+ * PROPTYPES PACKAGE IS USED TO VALIDATE THE PROPS PROPERTY. 
+ * THIS CAN BE ACHIVED BY TYPESCRIPT
+ */
+
+// Text.propTypes = {
+//   margin: PropTypes.string,
+//   className: PropTypes.string,
+// };
 
 export default Text;

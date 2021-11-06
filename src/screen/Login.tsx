@@ -2,11 +2,12 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { green } from "@mui/material/colors";
-import { ThemeProvider } from "@mui/system";
+import { Box, ThemeProvider } from "@mui/system";
 import Text from "../components/Text";
 import ScreenContainer from "../components/ScreenContainer";
 import { Button, Container } from "@mui/material";
 import Push from "../components/Button";
+import { Link } from "react-router-dom";
 
 // const Root = styled("div")(({ theme }) => ({
 //   padding: theme.spacing(1),
@@ -45,21 +46,23 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(5),
 }));
 
-export default function Login() {
+const Login: React.FC = (): JSX.Element => {
   return (
     <ScreenContainer>
       <CurrentContainer>
         <Text label="Email" color="success" type="email" />
-        <Text
-          label="Password"
-          color="success"
-          type="password"
-          margin="10px"
-        />
+        <Text label="Password" color="success" type="password" margin="10px" />
         <Push variant="contained" size="medium" color="success">
           Login
         </Push>
+        <Box mt={1}>
+          <Typography>
+            Don't have an account? <Link to="/register">Register</Link>
+          </Typography>
+        </Box>
       </CurrentContainer>
     </ScreenContainer>
   );
-}
+};
+
+export default Login;

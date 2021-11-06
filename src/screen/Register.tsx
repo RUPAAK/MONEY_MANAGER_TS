@@ -5,8 +5,9 @@ import { green } from "@mui/material/colors";
 import { ThemeProvider } from "@mui/system";
 import Text from "../components/Text";
 import ScreenContainer from "../components/ScreenContainer";
-import { Button, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import Push from "../components/Button";
+import { Link } from "react-router-dom";
 
 // const Root = styled("div")(({ theme }) => ({
 //   padding: theme.spacing(1),
@@ -45,7 +46,7 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(5),
 }));
 
-export default function Register() {
+const Register: React.FC = (): JSX.Element => {
   return (
     <ScreenContainer>
       <CurrentContainer>
@@ -59,9 +60,16 @@ export default function Register() {
           margin="10px"
         />
         <Push variant="contained" size="medium" color="success">
-          Regster
+          Register
         </Push>
+        <Box mt={1}>
+          <Typography>
+            Already have an account? <Link to="/login">Login</Link>
+          </Typography>
+        </Box>
       </CurrentContainer>
     </ScreenContainer>
   );
-}
+};
+
+export default Register;

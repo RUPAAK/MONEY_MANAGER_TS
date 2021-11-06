@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import Login from "./screen/Login";
 import { PartialRouteObject } from "react-router";
 import Register from "./screen/Register";
+import Home from "./screen/Home";
 
 interface RouterType {
   path: string;
@@ -16,21 +17,15 @@ interface RouterType {
 const routes: RouterType[] | PartialRouteObject[] = [
   {
     path: "/login",
-    children: [
-      {
-        path: "/",
-        element: <Login />,
-      },
-    ],
+    element: <Login />,
   },
   {
     path: "/register",
-    children: [
-      {
-        path: "/",
-        element: <Register />,
-      },
-    ],
+    element: <Register />,
+  },
+  {
+    path: "/",
+    element: <Home />,
   },
 ];
 
