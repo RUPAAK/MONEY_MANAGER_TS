@@ -14,6 +14,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Navbar from "../components/Appbar";
 
 const drawerWidth = 240;
 
@@ -22,11 +24,11 @@ interface Props {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  //   window?: () => Window;
+  window?: () => Window;
 }
 
-export default function ResponsiveDrawer(props: Props) {
-  //   const { window } = props;
+export default function Home(props: Props) {
+  const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -61,31 +63,13 @@ export default function ResponsiveDrawer(props: Props) {
     </div>
   );
 
-  //   const container =
-  //     window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            MONEY MANAGER
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Navbar />
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
@@ -93,7 +77,7 @@ export default function ResponsiveDrawer(props: Props) {
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          //   container={container}
+          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
