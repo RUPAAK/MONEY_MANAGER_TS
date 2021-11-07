@@ -16,6 +16,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Navbar from "../components/Appbar";
+import { Navigate } from "react-router";
 
 const drawerWidth = 240;
 
@@ -28,7 +29,6 @@ interface Props {
 }
 
 export default function Home(props: Props) {
-  const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
 
   const handleDrawerToggle = (): void => {
@@ -63,9 +63,6 @@ export default function Home(props: Props) {
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -77,7 +74,6 @@ export default function Home(props: Props) {
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}

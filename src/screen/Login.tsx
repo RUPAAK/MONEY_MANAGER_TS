@@ -50,10 +50,12 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
 }));
 
 const Login: React.FC = (): JSX.Element => {
+  window.history.replaceState(null, "data", "/login");
   const dispatch = useDispatch();
 
   const { userLogin } = bindActionCreators(actionCreators, dispatch);
   const userDetail = useSelector((state: State) => state.userLogin);
+
   return (
     <ScreenContainer>
       <CurrentContainer>

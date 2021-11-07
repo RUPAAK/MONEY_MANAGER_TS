@@ -47,6 +47,8 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
 }));
 
 const Register: React.FC = (): JSX.Element => {
+  window.history.replaceState(null, "data", "/register");
+
   return (
     <ScreenContainer>
       <CurrentContainer>
