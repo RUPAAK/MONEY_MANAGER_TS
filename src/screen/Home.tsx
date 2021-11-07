@@ -29,9 +29,9 @@ interface Props {
 
 export default function Home(props: Props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
 
-  const handleDrawerToggle = () => {
+  const handleDrawerToggle = (): void => {
     setMobileOpen(!mobileOpen);
   };
 
@@ -69,7 +69,7 @@ export default function Home(props: Props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <Navbar />
+      <Navbar isOpen={handleDrawerToggle} />
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
