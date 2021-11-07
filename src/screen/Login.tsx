@@ -8,6 +8,9 @@ import ScreenContainer from "../components/ScreenContainer";
 import { Button, Container } from "@mui/material";
 import Push from "../components/Button";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../state";
 
 // const Root = styled("div")(({ theme }) => ({
 //   padding: theme.spacing(1),
@@ -47,6 +50,10 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
 }));
 
 const Login: React.FC = (): JSX.Element => {
+  const dispatch = useDispatch();
+
+  const { userLogin } = bindActionCreators(actionCreators, dispatch);
+  const userDetail = useSelector((state: State) => state.userLogin);
   return (
     <ScreenContainer>
       <CurrentContainer>
