@@ -19,12 +19,7 @@ interface RouterType {
 const routes: RouterType[] | PartialRouteObject[] = [
   {
     path: "/login",
-    children: [
-      {
-        path: "/",
-        element: auth() ? <Navigate to="/" /> : <Login />,
-      },
-    ],
+    element: auth() ? <Navigate to="/" /> : <Login />,
   },
   {
     path: "/register",
@@ -36,7 +31,8 @@ const routes: RouterType[] | PartialRouteObject[] = [
   },
   {
     path: "/",
-    element: auth() ? <Home /> : <Login />,
+    element: <Home />,
+    // element: auth() ? <Home /> : <Login />,
   },
 ];
 

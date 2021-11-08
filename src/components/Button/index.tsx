@@ -3,8 +3,8 @@ import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-interface ButtonProps {
-  className?: string;
+interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
+  // className?: string;
   margin?: number;
   disabled?: boolean;
   size: "small" | "medium" | "large";
@@ -43,9 +43,10 @@ const Push: FC<ButtonProps> = ({
   children,
   variant = "text",
   size,
+  onClick,
 }) => {
   return (
-    <Button variant={variant} size={size} color={color}>
+    <Button variant={variant} size={size} color={color} onClick={onClick}>
       {children}
     </Button>
   );

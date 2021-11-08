@@ -5,22 +5,38 @@ import { green } from "@mui/material/colors";
 import { ThemeProvider } from "@mui/system";
 import Text from "../components/Text";
 import ScreenContainer from "../components/ScreenContainer";
-import { Box, Button, Container } from "@mui/material";
+import { Box, Button, Container, TextField } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import Push from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../state";
+import { useDispatch, useSelector } from "react-redux";
+import Alert from "react-bootstrap/Alert";
+import { Message } from "../components/Alert";
+import { UserLoginResponse } from "../state/payload-types/user";
+import { History } from "history";
+import { auth } from "../authencation";
+import { useEffect } from "react";
 
-// const Root = styled("div")(({ theme }) => ({
-//   padding: theme.spacing(1),
-//   // [theme.breakpoints.down("md")]: {
-//   //   backgroundColor: theme.palette.secondary.main,
-//   // },
-//   // [theme.breakpoints.up("md")]: {
-//   //   backgroundColor: theme.palette.primary.main,
-//   // },
-//   // [theme.breakpoints.up("lg")]: {
-//   //   backgroundColor: green[500],
-//   // },
-// }));
+interface UserAttrs {
+  loading: boolean;
+  userDetails: UserLoginResponse["data"];
+  error: any;
+}
+
+const MessageBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  width: "100%",
+  position: "relative",
+}));
+
+const Cancel = styled("p")(({ theme }) => ({
+  position: "absolute",
+  top: "2%",
+  right: "1%",
+  cursor: "pointer",
+}));
 
 const CurrentContainer = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("xs")]: {
@@ -46,22 +62,97 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(5),
 }));
 
-const Register: React.FC = (): JSX.Element => {
-  window.history.replaceState(null, "data", "/register");
+const Register: React.FC = (props, { history }): JSX.Element => {
+  // window.history.replaceState(null, "datas", "/register");
+
+  // const classes = useStyles();
+
+  const [name, setname] = React.useState<string>("");
+  const [email, setemail] = React.useState<string>("");
+  const [password, setpassword] = React.useState<string>("");
+  const [cpassword, setcpassword] = React.useState<string>("");
+  const [show, setShow] = React.useState<boolean>(true);
+
+  const dispatch = useDispatch();
+
+  const { userRegister } = bindActionCreators(actionCreators, dispatch);
+
+  const user: any = useSelector((state: State) => state.userRegister);
+
+  const { loading, userDetails, error } = user;
+
+  if (userDetails) {
+    <Navigate to="/" />;
+  }
+
+  const registerUserHandler = (): void => {
+    // (history as unknown as History).push("/")
+    userRegister({ name, email, password });
+  };
 
   return (
     <ScreenContainer>
       <CurrentContainer>
-        <Text label="Username" color="success" type="text" />
-        <Text label="Email" color="success" type="email" margin="10px" />
-        <Text label="Password" color="success" type="password" />
+        {error ? (
+          <MessageBox>
+            <Message
+              message={error}
+              variant="danger"
+              // onClose={() => setShow(!show)}
+              // onClick={() => setShow(!show)}
+              // show={show}
+            />
+            {/* <Cancel >X</Cancel> */}
+          </MessageBox>
+        ) : (
+          ""
+        )}
+        {userDetails ? (
+          <MessageBox>
+            <Message
+              message="Registration Successfull"
+              variant="success"
+              // onClose={() => setShow(!show)}
+              // onClick={() => setShow(!show)}
+              // show={show}
+            />
+            {/* <Cancel >X</Cancel> */}
+          </MessageBox>
+        ) : (
+          ""
+        )}
+        <Text
+          label="Username"
+          color="success"
+          type="text"
+          onChange={(e) => setname(e.target.value)}
+        />
+        <Text
+          label="Email"
+          color="success"
+          type="email"
+          margin="10px"
+          onChange={(e) => setemail(e.target.value)}
+        />
+        <Text
+          label="Password"
+          color="success"
+          type="password"
+          onChange={(e) => setpassword(e.target.value)}
+        />
         <Text
           label="Confirm Password"
           color="success"
           type="password"
           margin="10px"
+          onChange={(e) => setcpassword(e.target.value)}
         />
-        <Push variant="contained" size="medium" color="success">
+        <Push
+          variant="contained"
+          size="medium"
+          color="success"
+          onClick={registerUserHandler}
+        >
           Register
         </Push>
         <Box mt={1}>

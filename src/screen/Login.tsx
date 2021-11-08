@@ -12,19 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../state";
 
-// const Root = styled("div")(({ theme }) => ({
-//   padding: theme.spacing(1),
-//   // [theme.breakpoints.down("md")]: {
-//   //   backgroundColor: theme.palette.secondary.main,
-//   // },
-//   // [theme.breakpoints.up("md")]: {
-//   //   backgroundColor: theme.palette.primary.main,
-//   // },
-//   // [theme.breakpoints.up("lg")]: {
-//   //   backgroundColor: green[500],
-//   // },
-// }));
-
 const CurrentContainer = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("xs")]: {
     width: "80%",
@@ -51,9 +38,11 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
 
 const Login: React.FC = (): JSX.Element => {
   window.history.replaceState(null, "data", "/login");
+
   const dispatch = useDispatch();
 
   const { userLogin } = bindActionCreators(actionCreators, dispatch);
+  
   const userDetail = useSelector((state: State) => state.userLogin);
 
   return (

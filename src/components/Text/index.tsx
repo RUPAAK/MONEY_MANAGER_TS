@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
 
-interface TextProps {
+interface TextProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
   margin?: string;
   type?: string;
@@ -12,7 +12,7 @@ interface TextProps {
   height?: string;
   label: string;
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
-  // | string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   children?: ReactNode;
 }
 
@@ -45,6 +45,7 @@ const Text: FC<TextProps> = ({
   color = "primary",
   type = "text",
   label,
+  onChange,
 }): JSX.Element => {
   const classes = useStyles({ margin, label });
   return (
@@ -55,13 +56,13 @@ const Text: FC<TextProps> = ({
       color={color}
       type={type}
       label={label}
+      onChange={onChange}
     />
   );
 };
 
-
 /**
- * PROPTYPES PACKAGE IS USED TO VALIDATE THE PROPS PROPERTY. 
+ * PROPTYPES PACKAGE IS USED TO VALIDATE THE PROPS PROPERTY.
  * THIS CAN BE ACHIVED BY TYPESCRIPT
  */
 
