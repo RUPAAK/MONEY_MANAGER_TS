@@ -1,25 +1,25 @@
-import { UserActionType, UserRegisterType } from "../action-types/user";
+import { UserLoginType, UserRegisterType } from "../action-types/user";
 import { UserLoginResponse, UserRegisterResponse } from "../payload-types/user";
 
 /**
  * * LOGIN USER INTERFACE
  */
 interface USER_LOGIN_REQUEST {
-  type: UserActionType.USER_LOGIN_REQUEST;
+  type: UserLoginType.USER_LOGIN_REQUEST;
   payload: null;
 }
 
 interface USER_LOGIN_SUCCESS {
-  type: UserActionType.USER_LOGIN_SUCCESS;
+  type: UserLoginType.USER_LOGIN_SUCCESS;
   payload: UserLoginResponse["data"];
 }
 
 interface USER_LOGIN_FAILED {
-  type: UserActionType.USER_LOGIN_FAILED;
+  type: UserLoginType.USER_LOGIN_FAILED;
   payload: any;
 }
 
-export type UserAction =
+export type UserLoginAction =
   | USER_LOGIN_FAILED
   | USER_LOGIN_REQUEST
   | USER_LOGIN_SUCCESS;

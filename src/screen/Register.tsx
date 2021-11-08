@@ -81,9 +81,9 @@ const Register: React.FC = (props, { history }): JSX.Element => {
 
   const { loading, userDetails, error } = user;
 
-  if (userDetails) {
-    <Navigate to="/" />;
-  }
+  // if (userDetails) {
+  //   <Navigate to="/" />;
+  // }
 
   const registerUserHandler = (): void => {
     // (history as unknown as History).push("/")

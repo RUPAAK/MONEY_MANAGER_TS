@@ -11,6 +11,14 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../state";
+import { Message } from "../components/Alert";
+import { Alert } from "react-bootstrap";
+
+const MessageBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  width: "100%",
+  position: "relative",
+}));
 
 const CurrentContainer = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("xs")]: {
@@ -39,18 +47,71 @@ const CurrentContainer = styled(Container)(({ theme }) => ({
 const Login: React.FC = (): JSX.Element => {
   window.history.replaceState(null, "data", "/login");
 
+  const [email, setemail] = React.useState<string>("");
+  const [password, setpassword] = React.useState<string>("");
+
   const dispatch = useDispatch();
 
   const { userLogin } = bindActionCreators(actionCreators, dispatch);
-  
-  const userDetail = useSelector((state: State) => state.userLogin);
+
+  const user: any = useSelector((state: State) => state.userLogin);
+
+  const { loading, userDetails, error } = user;
+
+  const loginUserHandler = (): void => {
+    // (history as unknown as History).push("/")
+    userLogin({ email, password });
+  };
 
   return (
     <ScreenContainer>
       <CurrentContainer>
-        <Text label="Email" color="success" type="email" />
-        <Text label="Password" color="success" type="password" margin="10px" />
-        <Push variant="contained" size="medium" color="success">
+        {error ? (
+          <MessageBox>
+            <Message
+              message={error}
+              variant="danger"
+              // onClose={() => setShow(!show)}
+              // onClick={() => setShow(!show)}
+              // show={show}
+            />
+            {/* <Cancel >X</Cancel> */}
+          </MessageBox>
+        ) : (
+          ""
+        )}
+        {userDetails ? (
+          <MessageBox>
+            <Message
+              message="Login Successfull"
+              variant="success"
+              // onClose={() => setShow(!show)}
+              // onClick={() => setShow(!show)}
+              // show={show}
+            />
+          </MessageBox>
+        ) : (
+          ""
+        )}
+        <Text
+          label="Email"
+          color="success"
+          type="email"
+          onChange={(e) => setemail(e.target.value)}
+        />
+        <Text
+          label="Password"
+          color="success"
+          type="password"
+          margin="10px"
+          onChange={(e) => setpassword(e.target.value)}
+        />
+        <Push
+          variant="contained"
+          size="medium"
+          color="success"
+          onClick={loginUserHandler}
+        >
           Login
         </Push>
         <Box mt={1}>

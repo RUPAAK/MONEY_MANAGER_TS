@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { instance } from "../../axios";
-import { UserActionType, UserRegisterType } from "../action-types/user";
-import { UserAction, UserRegisterAction } from "../action/user";
+import { UserLoginType, UserRegisterType } from "../action-types/user";
+import { UserLoginAction, UserRegisterAction } from "../action/user";
 import { UserLoginResponse, UserRegisterResponse } from "../payload-types/user";
 
 type UserLogin = {
@@ -10,8 +10,42 @@ type UserLogin = {
 };
 
 type UserRegisterField = UserLogin & { name: string };
+const userLogin =
+  ({ email, password }: UserLogin) =>
+  async (dispatch: Dispatch<UserLoginAction>, getState: any) => {
+    try {
+      dispatch({
+        type: UserLoginType.USER_LOGIN_REQUEST,
+        payload: null,
+      });
 
-const userLogin = () => {};
+      const response: { data: UserLoginResponse } = await instance.post(
+        "/auth/signin",
+        {
+          email,
+          password,
+        }
+      );
+
+      dispatch({
+        type: UserLoginType.USER_LOGIN_SUCCESS,
+        payload: response.data.data,
+      });
+
+      await localStorage.setItem(
+        "accessToken",
+        JSON.stringify(response.data.accessToken)
+      );
+    } catch (error) {
+      dispatch({
+        type: UserLoginType.USER_LOGIN_FAILED,
+        payload: (error as Error).message
+          ? (error as Error).message
+          : "Login Failed",
+      });
+    }
+  };
+
 const userRegister =
   ({ name, email, password }: UserRegisterField) =>
   async (dispatch: Dispatch<UserRegisterAction>, getState: any) => {
