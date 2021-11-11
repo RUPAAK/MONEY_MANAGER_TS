@@ -31,8 +31,8 @@ const routes: RouterType[] | PartialRouteObject[] = [
   },
   {
     path: "/",
-    element: <Home />,
-    // element: auth() ? <Home /> : <Login />,
+    // element: <Home />,
+    element: auth() ? <Home /> : <Login />,
   },
 ];
 

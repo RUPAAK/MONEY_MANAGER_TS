@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Navbar from "../components/Appbar";
 import { Navigate } from "react-router";
+import Sidebar from "../components/Drawer";
 
 const drawerWidth = 240;
 
@@ -73,7 +74,7 @@ export default function Home(props: Props) {
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
+        {/* <Drawer
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -89,8 +90,8 @@ export default function Home(props: Props) {
           }}
         >
           {drawer}
-        </Drawer>
-        <Drawer
+        </Drawer> */}
+        {/* <Drawer
           variant="permanent"
           sx={{
             display: { xs: "none", sm: "block" },
@@ -102,7 +103,8 @@ export default function Home(props: Props) {
           open
         >
           {drawer}
-        </Drawer>
+        </Drawer> */}
+        <Sidebar />
       </Box>
       <Box
         component="main"
